@@ -34,7 +34,7 @@ public abstract class AbsDao{
 
 	private void getStandartTransact(Object obj)
 	{
-	//EntityManager entityManager  = getEntityManager();
+	EntityManager entityManager  = getEntityManager();
 	EntityTransaction tx = entityManager.getTransaction();
 		try{
 			tx.begin(); 
@@ -66,7 +66,7 @@ public abstract class AbsDao{
 	@SuppressWarnings("finally")
 	protected int execQuery_(String query,List<?> obj_par_ar)
 	{	
-	//EntityManager entityManager  = getEntityManager();
+	EntityManager entityManager  = getEntityManager();
 	int m = -1;
 	Query query_ = entityManager.createNativeQuery(query);
 	querySetParams(query_,obj_par_ar);
@@ -109,7 +109,7 @@ public abstract class AbsDao{
 	@SuppressWarnings("finally")
 	protected <T> List<?> selectQuery_(String query,List<?> obj_par_ar,Class<T> cls)
 	{	
-	//EntityManager entityManager  = getEntityManager();
+	EntityManager entityManager  = getEntityManager();
 	List<?> list = null;
 	Query query_ = null;
 	if (cls!=null)
