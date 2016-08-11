@@ -29,6 +29,7 @@ public class DefaultDaoImpl extends AbsDao implements DefaultDao {
 		System.out.println("Dao created");
 	}
 	
+	@Transactional
 	public int CheckBase () throws SQLException
 	{	
 		//EntityManager entityManager  = getEntityManager();
