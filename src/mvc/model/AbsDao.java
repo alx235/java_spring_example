@@ -18,8 +18,9 @@ import org.springframework.stereotype.Service;
 public abstract class AbsDao{
 	/*@Autowired
 	private EntityManagerFactory entityManagerFactory;*/
+	
 	@PersistenceContext
-	private EntityManager entityManager;
+	private EntityManager entityManager;//shared EntityManager
 	
 	public void store(Object obj) { 
 		
