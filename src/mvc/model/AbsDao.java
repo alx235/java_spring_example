@@ -32,7 +32,6 @@ public abstract class AbsDao{
 		return entityManager;
 	}
 
-	@Transactional
 	private void getStandartTransact(Object obj)
 	{
 	//EntityManager entityManager  = getEntityManager();
@@ -63,8 +62,7 @@ public abstract class AbsDao{
 	{	
 			return execQuery_(query,null);
 	}
-	
-	@Transactional
+
 	@SuppressWarnings("finally")
 	protected int execQuery_(String query,List<?> obj_par_ar)
 	{	
@@ -108,7 +106,6 @@ public abstract class AbsDao{
 			return selectQuery_(query,null,null);
 	}	
 	
-	@Transactional
 	@SuppressWarnings("finally")
 	protected <T> List<?> selectQuery_(String query,List<?> obj_par_ar,Class<T> cls)
 	{	
