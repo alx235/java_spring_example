@@ -31,7 +31,7 @@ public class DefaultDaoImpl extends AbsDao implements DefaultDao {
 	
 	public int CheckBase () throws SQLException
 	{	
-		EntityManager entityManager  = getEntityManager();
+		//EntityManager entityManager  = getEntityManager();
 		Connection connection = getConnection(entityManager);
 		
 		if (connection==null)
@@ -63,7 +63,7 @@ public class DefaultDaoImpl extends AbsDao implements DefaultDao {
 		}
 	}
 	
-	 private Connection getConnection(EntityManager entityManager) {
+	private Connection getConnection(EntityManager entityManager) {
 		//setEntityManager();
         Session session = (Session) entityManager.getDelegate();
         SessionFactoryImpl sessionFactory = (SessionFactoryImpl) session.getSessionFactory();
