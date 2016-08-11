@@ -13,9 +13,6 @@ public class DiskDaoImpl extends AbsDao implements DiskDao  {
 	
 	@SuppressWarnings("unchecked")
 	public Disk findBy_id(Long id) {
-//		SetEntityManager();
-//		Query query = entityManager.createNativeQuery("select * from Disk c where"
-//				+ " (c.id=:a)").setParameter("a", id);
 		String query = "select * from Disks c where (c.id=:a)";
 		List <Object> list= new ArrayList <Object>();
 		list.add(id);
