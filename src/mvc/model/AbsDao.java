@@ -11,13 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-//абстрактный класс ддя создания entityManager
-//и выполнения транзакций
+//Г ГЎГ±ГІГ°Г ГЄГІГ­Г»Г© ГЄГ«Г Г±Г± Г¤Г¤Гї Г±Г®Г§Г¤Г Г­ГЁГї entityManager
+//ГЁ ГўГ»ГЇГ®Г«Г­ГҐГ­ГЁГї ГІГ°Г Г­Г§Г ГЄГ¶ГЁГ©
 
 
 public abstract class AbsDao{
-	@Autowired
-	private EntityManagerFactory entityManagerFactory;
+	/*@Autowired
+	private EntityManagerFactory entityManagerFactory;*/
+	@PersistenceContext
+	private EntityManager entityManager;
 	
 	public void store(Object obj) { 
 		
@@ -26,12 +28,13 @@ public abstract class AbsDao{
 	
 	protected EntityManager getEntityManager()
 	{
-		return entityManagerFactory.createEntityManager();
+		return entityManager;
 	}
 
+	@Transactional
 	private void getStandartTransact(Object obj)
 	{
-	EntityManager entityManager  = getEntityManager();
+	//EntityManager entityManager  = getEntityManager();
 	EntityTransaction tx = entityManager.getTransaction();
 		try{
 			tx.begin(); 
@@ -60,10 +63,11 @@ public abstract class AbsDao{
 			return execQuery_(query,null);
 	}
 	
+	@Transactional
 	@SuppressWarnings("finally")
 	protected int execQuery_(String query,List<?> obj_par_ar)
 	{	
-	EntityManager entityManager  = getEntityManager();
+	//EntityManager entityManager  = getEntityManager();
 	int m = -1;
 	Query query_ = entityManager.createNativeQuery(query);
 	querySetParams(query_,obj_par_ar);
@@ -103,10 +107,11 @@ public abstract class AbsDao{
 			return selectQuery_(query,null,null);
 	}	
 	
+	@Transactional
 	@SuppressWarnings("finally")
 	protected <T> List<?> selectQuery_(String query,List<?> obj_par_ar,Class<T> cls)
 	{	
-	EntityManager entityManager  = getEntityManager();
+	//EntityManager entityManager  = getEntityManager();
 	List<?> list = null;
 	Query query_ = null;
 	if (cls!=null)
