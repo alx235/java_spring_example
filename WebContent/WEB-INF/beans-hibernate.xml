@@ -38,11 +38,6 @@ http://www.springframework.org/schema/task http://www.springframework.org/schema
 <constructor-arg ref="jdbcTemplate" />
 </bean>
 
-<!--Thread safe proxy from Spring bean: each thread invoke and get it's own object-->
-<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-    <property name="entityManagerFactory" ref="entityManagerFactory"/>
-</bean>
-
 <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="DbaSet" />
 		<property name="dataSource" ref="dataSource" />
@@ -58,5 +53,12 @@ http://www.springframework.org/schema/task http://www.springframework.org/schema
 	        </props>
 		</property>
  </bean>
+ 
+ <!--Thread safe proxy from Spring bean: each thread invoke and get it's own object-->
+<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+    <property name="entityManagerFactory" ref="entityManagerFactory"/>
+</bean>
+ 
+ <tx:annotation-driven proxy-target-class="true" mode="proxy" />
 
 </beans> 
